@@ -1,35 +1,30 @@
-
-/**
- * Module dependencies.
- */
-
+//Module dependencies.
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
-var path = require('path');
+var routeConfig = require("./app_start/route-config");
+var staticContentConfig = require("./app_start/static-content-config");
+var expressConfig = require("./app_start/express-config");
 
-var app = express();
+var app = express(),
+	appDir = __dirname,
+	appProcess = process;
 
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
+//Initialize routes
+routeConfig.initialize(app);
+
+//Configure static file access
+staticContentConfig.initialize(app, express, appDir);
+
+//Configure Express server environment
+expressConfig.initialize(app, express, appDir, appProcess);
+
+//Show errors in dev mode.
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-
+//Start server.
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
