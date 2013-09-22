@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="/content/Site.css" rel="stylesheet">
+        <!--  @Scripts.Render("~/bundles/modernizr")-->
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title"><a href="/" >your logo here</a></p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        <!-- Html.Partial("_LoginPartial")  --> 
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <!--  @RenderSection("featured", required: false)  -->
+            <section class="content-wrapper main-content clear-fix">
+               <!-- @RenderBody() --> 
+               <%- body %>
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+         <%- scripts %>
+    </body>
+</html>
