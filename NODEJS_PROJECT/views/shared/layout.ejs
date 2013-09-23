@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title><%= title %> - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         <link href="/content/Site.css" rel="stylesheet">
@@ -17,12 +17,13 @@
                 <div class="float-right">
                     <section id="login">
                         <!-- Html.Partial("_LoginPartial")  --> 
+                        <%- partial('partials/_loginPartial') %>
                     </section>
                     <nav>
                         <ul id="menu">
                             <li><a href="/">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/contacts">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -30,6 +31,7 @@
         </header>
         <div id="body">
             <!--  @RenderSection("featured", required: false)  -->
+            <%- blocks.featured %>
             <section class="content-wrapper main-content clear-fix">
                <!-- @RenderBody() --> 
                <%- body %>
@@ -42,6 +44,8 @@
                 </div>
             </div>
         </footer>
+        <!-- @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false) -->
          <%- scripts %>
     </body>
 </html>

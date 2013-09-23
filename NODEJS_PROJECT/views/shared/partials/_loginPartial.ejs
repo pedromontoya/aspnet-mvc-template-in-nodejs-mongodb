@@ -1,0 +1,14 @@
+<% if (false) { %>
+    <text>
+        Hello, <a href="#" class = "username" title = "Manage">Name</a>!
+        <form action="account/logoff" method="post" id ="logoutForm" >
+            <!-- @Html.AntiForgeryToken() -->
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        </form>
+    </text>
+<% } else { %>
+    <ul>
+        <li><a href="/account/register" id="registerLink">Register</a></li>
+        <li><a href="/account/login" id="loginLink">Log in</a></li>
+    </ul>
+<% } %>

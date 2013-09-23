@@ -1,11 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<% layout('../shared/layout') -%>
+
+<hgroup class="title">
+    <h1><%= title %>.</h1>
+</hgroup>
+
+<section id="loginForm">
+<h2>Use a local account to log in.</h2>
+<form action="#" method="post">
+<!-- @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true) -->
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                <!-- @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName) -->
+                <label>User Name</label>
+                <input type="textbox" id="username" name="username">
+            </li>
+            <li>
+                <!-- @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password) -->
+                <label>Password</label>
+                <input type="textbox" id="password" name="password">
+            </li>
+            <li>
+                <!-- @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" }) -->
+                <label class="checkbox">Remember Me</label>
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    <p>
+        <a href="/register">Register</a> if you don't have an account.
+    </p>
+</form>
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    <!-- @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl }) -->
+    <a href="#">ExternalLoginsList</a>
+</section>
+
+<!-- @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+} -->
+

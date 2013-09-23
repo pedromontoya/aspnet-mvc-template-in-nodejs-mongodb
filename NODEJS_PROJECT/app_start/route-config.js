@@ -10,8 +10,12 @@ var accountRouter = require("../routers/accountRouter");
 exports.initialize = function(app){
 	//Configure home routes
 	app.get('/', homeRouter.index);
+	app.get('/about', homeRouter.about);
+	app.get('/contacts', homeRouter.contacts);
 	
 	
 	//Configure account routes
-	app.get('/users', accountRouter.list);
+	app.get('/account/login', accountRouter.login);
+	app.get('/account/manage', accountRouter.manage);
+	app.get('/account/register', accountRouter.register);
 };
