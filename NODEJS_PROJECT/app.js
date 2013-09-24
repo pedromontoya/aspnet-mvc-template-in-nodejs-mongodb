@@ -1,9 +1,12 @@
 //Module dependencies.
-var express = require('express');
-var http = require('http');
-var routeConfig = require("./app_start/route-config");
-var staticContentConfig = require("./app_start/static-content-config");
-var expressConfig = require("./app_start/express-config");
+var express = require('express'),
+    mongoose = require('mongoose'),
+    http = require('http'),
+    routeConfig = require("./configurations/route-config"),
+    staticContentConfig = require("./configurations/static-content-config"),
+    expressConfig = require("./configurations/express-config"),
+    mongooseConfig = require("./configurations/mongoose-config");
+
 
 var app = express(),
 	appDir = __dirname,
@@ -18,6 +21,9 @@ staticContentConfig.initialize(app, express, appDir);
 
 //Configure Express server environment
 expressConfig.initialize(app, express, appDir, appProcess);
+
+//Configure mongoose ODM
+mongooseConfig.initialize(mongoose);
 
 //Show errors in dev mode.
 if ('development' == app.get('env')) {
