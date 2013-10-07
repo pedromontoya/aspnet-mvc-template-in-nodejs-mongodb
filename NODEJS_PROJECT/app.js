@@ -12,15 +12,14 @@ var app = express(),
 	appDir = __dirname,
 	appProcess = process;
 
+//Configure Express server environment - do this first
+expressConfig.initialize(app, express, appDir, appProcess);
 
 //Initialize routes
-routeConfig.initialize(app);
+routeConfig.initialize(app);	
 
 //Configure static file access
 staticContentConfig.initialize(app, express, appDir);
-
-//Configure Express server environment
-expressConfig.initialize(app, express, appDir, appProcess);
 
 //Configure mongoose ODM
 mongooseConfig.initialize(mongoose);

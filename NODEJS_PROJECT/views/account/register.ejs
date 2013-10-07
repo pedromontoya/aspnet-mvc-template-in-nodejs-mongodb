@@ -1,4 +1,11 @@
-<% layout('../shared/layout') -%>
+<% layout('../shared/layout');
+	function textFor(arg){
+		if (!arg){
+			return "";
+		}
+		return arg;
+	}
+%>
 
 <hgroup class="title">
     <h1><%= title %>.</h1>
@@ -16,20 +23,20 @@
 <!--                 @Html.LabelFor(m => m.UserName) -->
 <!--                 @Html.TextBoxFor(m => m.UserName) -->
 				<label>User Name</label>
-                <input type="textbox" id="username" name="username">
+                <input type="text" id="username" name="username" value='<%= textFor(user.username) %>'>
 				
             </li>
             <li>
 <!--                 @Html.LabelFor(m => m.Password) -->
 <!--                 @Html.PasswordFor(m => m.Password) -->
 				<label>Password</label>
-                <input type="textbox" id="password" name="password">
+                <input type="text" id="password" name="password">
             </li>
             <li>
 <!--                 @Html.LabelFor(m => m.ConfirmPassword) -->
 <!--                 @Html.PasswordFor(m => m.ConfirmPassword) -->
 				<label>Confirm Password</label>
-                <input type="textbox" id="confirmPassword" name="confirmPassword">
+                <input type="text" id="confirmPassword" name="confirmPassword">
             </li>
         </ol>
         <input type="submit" value="Register" />

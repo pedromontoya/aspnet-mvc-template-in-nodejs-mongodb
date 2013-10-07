@@ -2,7 +2,8 @@
 /*
  * Configure account route responses.
  */
-	//var UserProfile = require('../data/models/account/userProfileModel');
+ var UserProfile = require('../data/models/account/userProfileModel');
+ var AccountRegistrationModel = require('../data/models/account/accountRegistrationModel');
  
  exports.initialize = function(app){
 	app.get('/account/login',  function(req, res){
@@ -14,12 +15,22 @@
 	});
 	
 	app.get('/account/register', function(req, res){
-		res.render('account/register', { title: "Register", message:"Inser Message Here"});
+		var registrationModel = new AccountRegistrationModel();
+		res.render('account/register', registrationModel);
 	});
 	
 	app.post('/account/register', function(req, res){
-		//var user = new UserProfile();
+		var user = new UserProfile();
 		user.userName = req.body.username;
 		user.password = req.body.password;
+		
+		user.save(function(err){
+			if(err){
+				var registrationModel = new AccountRegistrationModel();
+				registrationModel.user = user;
+				res.render("/account/register", registrationModel);
+			}
+				res.redirect('/');
+			});
 	});
 };
